@@ -27,9 +27,9 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t vijaykolla/myapp:${{ github.sha }} ./my-project
+          docker build -t vijay/myapp:${{ github.sha }} ./my-project
 
       - name: Push Docker image
         if: github.ref == 'refs/heads/main'
         run: |
-          docker push vijaykolla/myapp:${{ github.sha }}
+          docker push vijay/myapp:${{ github.sha }}
