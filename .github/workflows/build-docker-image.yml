@@ -13,28 +13,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout repository code
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Step 2: Set up Docker Buildx
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-      # Step 3: Log in to Docker Hub
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      # Step 4: Build Docker image (Dockerfile is inside my-project folder)
       - name: Build Docker image
         run: |
-          docker build -t vijay/myapp:${{ github.sha }} ./my-project
+          docker build -t vijaykolla/myapp:${{ github.sha }} ./my-project
 
-      # Step 5: Push Docker image to Docker Hub
       - name: Push Docker image
         if: github.ref == 'refs/heads/main'
         run: |
-          docker push vijay/myapp:${{ github.sha }}
+          docker push vijaykolla/myapp:${{ github.sha }}
